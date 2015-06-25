@@ -1,0 +1,17 @@
+# Development configuration file.
+#
+# Start a server with this configuration merged over default.yml via:
+#
+# converjon --dev
+#
+alias: dev
+
+base_file_path: "test/resources/wrong_path"
+
+fallback_base_file_paths:
+  - "test/resources/nope"
+  - "test/resources/images" # this one actually works, it should fall back to this one
+
+headers:
+  max-age: 3600
+  Cache-Control: "max-age=3600"

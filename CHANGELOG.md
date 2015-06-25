@@ -1,3 +1,56 @@
+# 2.5.0 (2015-06-10)
+
+* Garbage collector for cache items (#19)
+* Fixed a long standing bug that caused locks to accumulate (#107)
+* Fixed a bug in cache that caused item to always invalidate immediately (#104)
+* Boolean config values can now also be written as strings (#104)
+* Added fallback local file paths (#102)
+* Local source files can be used without copying (#100)
+* Additional test page to run server under continuous load (#18)
+
+# 2.4.2 (2015-06-03)
+
+* fixed a critical bug in error handling (#99)
+
+# 2.4.1 (2015-06-02)
+
+* Security: more strict validation of numeric parameters (#94)
+* Security: "nosniff" HTTP header (#98)
+* NPM shrinkwrap (#96)
+* Release documentation (#97)
+* added missing package.json infos (#95)
+
+# 2.4.0 (2015-05-28)
+
+* Bugfix: matching of configs against keys (#92)
+* Added support getting source files from filesystem instead of URLs (#91)
+* Added config option to disable source URL header (#78)
+* Improved error logging (#93)
+* Added blur effect (#89)
+* Added configurable URL base path (#90)
+
+# 2.3.0 (2015-05-07)
+
+* Add parameter presets (#70)
+* Interactive cropping on `/demo` page (#79)
+* Padding color is now changable via URL parameter (#80)
+
+# 2.2.1 (2015-04-07)
+
+* Fix counting too many requests. (#81)
+* Bring back debug logging (#82)
+* Fix accumulating locks for failing downloads (#83)
+
+# 2.2.0 (2015-03-16)
+
+* Added error reporting when converting non existing files in CLI (#74)
+* Added logging level "info" in configs, defaults o STDOUT
+* Introduced `download.rejectInvalidSSL` option (#76)
+* Added `strip_metadata` parameter (#67)
+* Fixed timeout on sources with 0 bytes length (#73)
+* Added validation of AOI, is now rejected if it doesn't fit inside the source image (#72)
+
+
 # 2.1.0 (2015-01-05)
 
 * Added support for interlaced images via `interlace` parameter (think progressive JPGs, #65)
@@ -6,7 +59,7 @@
 * Added [CONTRIBUTING.md](CONTRIBUTING.md) with hints on how to help this project (#66)
 * Modified help messages for server and CLI (#58, #59)
 * Fixed typo in error message (#60)
-* Made scripts in `bin/` executable and modified README a bit for #65 and #66)
+* Made scripts in `bin/` executable and modified README a bit (#65 and #66)
 
 # 2.0.1
 
