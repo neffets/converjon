@@ -4,8 +4,7 @@
 
 An advanced image conversion server and command line tool.
 
-**IMPORTANT: Converjon 2.0.0 has been released. For documentation on the previous version 1.8.x see
-[here](https://github.com/berlinonline/converjon/tree/148ab8a6c01c6ffae6e2f40d25ec35d8c0cfb57d).**
+**IMPORTANT: For documentation on the old 1.8.x version see [here](https://github.com/berlinonline/converjon/tree/148ab8a6c01c6ffae6e2f40d25ec35d8c0cfb57d).**
 
 * [Features](#features)
 * [Dependencies](#dependencies)
@@ -58,6 +57,8 @@ An advanced image conversion server and command line tool.
 
 Use NPM: `npm install [-g] converjon`
 
+If you want to prevent the fixed dependency versions of the ```npm-shrinkwrap.json``` file to be used on install use ```--no-shrinkwrap``` as a command line argument. See [shrinkwrap docs](https://docs.npmjs.com/cli/shrinkwrap) and [install docs](https://docs.npmjs.com/cli/install) for more information on this.
+
 Conversion follows [Semantic Versioning](http://semver.org/).
 
 ## Usage
@@ -100,6 +101,8 @@ By default images are cropped from the center of the original. You can specify a
     offsetX,offsetY,width,height
 
 The AOI can also be embedded in the original image's metadata via EXIF or IPTC. The name of this metadata field can be configured and defaults to `aoi`. The request parameter overrides the AOI value from the image's metadata.
+
+By default, the AOI in the URL parameters has precedence over the one from the image's metadata. To prefer the embedded AOI from the metadata, set the `prefer_embedded_aoi` parameter to any non-empty value.
 
 ### Cropping mode
 
@@ -197,6 +200,11 @@ When launching converjon, you can specify one or more configuration files with t
 converjon --config conf_file1.yml --config conf_file2.json
 ```
 
+To load a directory containing one or more config file, use the `--config-dir` option. Config files will be added in the order they appear in that directory.
+```
+converjon --config-dir /etc/converjon
+```
+
 You can use the [default.yml](https://github.com/berlinonline/converjon/blob/master/config/default.yml) or [development.yml](https://github.com/berlinonline/converjon/blob/master/config/development.yml) file as an example for writing your own.
 
 The default configuration format is YAML but you can also use JSON files.
@@ -217,7 +225,7 @@ urls:
 
 Converjon uses [calmcard](https://github.com/lnwdr/calmcard) for string pattern matching. Documentation on how these patterns work can be found there.
 
-This way you can define different setting depending on the source of the requested images.
+This way you can define different settings depending on the source of the requested images.
 
 ### Server
 
@@ -250,7 +258,7 @@ server:
 ### Downloads
 
 **URL whitelists**
-`download.url_whitelist` sets list of URL patterns that allowed to be requested as image sources.
+`download.url_whitelist` sets list of URL patterns that are allowed to be requested as image sources.
 
 For example, if you host your source images on `http://myimages.com/images/...` you should set the whitelist pattern to `http://myimages.com/images/` to make sure other sources are not allowed.
 
@@ -269,7 +277,7 @@ You can also prefix the pattern with ``~ `` (like ``~ ^http://(foo|bar)\.example
 `download.timeout` sets a timeout after which requests are cancelled, if the source server doesn't respond in time.
 
 **Reject Invalid SSL Certificates**
-Setting `download.rejectInvalidSSL` to `true` will cause sources to be rejected, if their SSL certificates can nnot be validated.
+Setting `download.rejectInvalidSSL` to `true` (default) will cause sources to be rejected, if their SSL certificates cannot be validated.
 
 ###Aliases
 
@@ -338,15 +346,15 @@ garbage_collector:
   interval: 5000
 ```
 
-* `enabled`: turns the gargabe colelctor on or off
-* `source`: determined when source files should be cleaned up. Possible values are:
+* `enabled`: turns the garbage collector on or off
+* `source`: determines when source files should be cleaned up. Possible values are:
   * `cache`: The file will be removed when it's cache lifetime has expired
   * `immediate`: The file will be removed as soon as it's no longer in use by any pending request.
   * any other value will disable the cleanup for source files
 * `target`: same as `source` but for the converted target image files
 * `interval`: time between garbage collector runs, in milliseconds.
 
-**Local source files that were not copied into  the cache directory will not be removed by the garbage collector.**
+**Local source files that were not copied into the cache directory will not be removed by the garbage collector.**
 
 ### Processes
 

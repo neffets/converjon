@@ -1,3 +1,45 @@
+# 2.7.1 (2015-10-29)
+
+* fallback cropping in case of invalid embedded AOI (#124)
+
+# 2.7.0 (2015-10-08)
+
+* added a switch for the preferred AOI source (#122)
+
+# 2.6.0 (2015-10-01)
+
+* added support for loading all config files from a directory (#121)
+* added support for percentage values in AOI (#119)
+* new crop mode "none", preserves the entire image (#118)
+
+# 2.5.6 (2015-08-28)
+
+* fixed error reporting  bug that caused local file requests to fail. #109
+
+# 2.5.5 (2015-07-31)
+
+* `rejectInvalidSSL` option couldn't be used to set `strictSSL` option of request to `false`.
+  This lead to problems requesting images from hosts with self-signed certificates. A debug
+  message with the original request response error message was added in the process (#117).
+
+# 2.5.4 (2015-07-17)
+
+* Fixes analysis errors that were lost (#116 , #114)
+* Fixes overly verbose GC error logs (#119)
+* Fixed some typos in log messages
+
+# 2.5.3 (2015-07-14)
+
+* Fixes accumulating file descriptors (#111)
+
+# 2.5.2 (2015-07-14)
+
+* invalid release (replaced by 2.5.3)
+
+# 2.5.1 (2015-07-14)
+
+* invalid release (replaced by 2.5.3)
+
 # 2.5.0 (2015-06-10)
 
 * Garbage collector for cache items (#19)
